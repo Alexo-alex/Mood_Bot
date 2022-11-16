@@ -1,7 +1,7 @@
 from telebot import types, TeleBot
 
 # Це наш токен
-TOKEN = '5638123036:AAF6qPVKzimeQuBNqpRdbQspuIyjuyP_bcI'
+TOKEN = ' ваш токен'
 
 bot = TeleBot(TOKEN)
 
@@ -9,10 +9,10 @@ bot = TeleBot(TOKEN)
 @bot.message_handler(commands=['start'])
 def welcome(message):
     markup_inline = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    i_am_roll = types.KeyboardButton(text='Рофл')
-    i_am_joyful = types.KeyboardButton(text='Радісний')
-    i_am_angry = types.KeyboardButton(text='Агрюсь')
-    i_am_norms = types.KeyboardButton(text='Норм')
+    i_am_roll = types.KeyboardButton(text='Рофлю 🤣')
+    i_am_joyful = types.KeyboardButton(text='Радію 🙂')
+    i_am_angry = types.KeyboardButton(text='Агрюсь 😡')
+    i_am_norms = types.KeyboardButton(text='Норм 😑')
 
     markup_inline.add(i_am_roll, i_am_joyful, i_am_angry, i_am_norms)
     bot.send_message(message.chat.id, 'Обери свій муд на сьогодні!', reply_markup=markup_inline)
@@ -20,17 +20,17 @@ def welcome(message):
 
 @bot.message_handler(content_types=['text'])
 def get_text(message):
-    print(message.text)
-    if message.text == 'Рофл':
+    text = message.text
+    if 'Рофлю' in text:
         sti_1 = open('static/Laughs_to_tears.png', 'rb')
         bot.send_sticker(message.chat.id, sti_1)
-    elif message.text == 'Радісний':
+    elif 'Радію' in text:
         sti_1 = open('static/Cheerful.png', 'rb')
         bot.send_sticker(message.chat.id, sti_1)
-    elif message.text == 'Агрюсь':
+    elif 'Агрюсь' in text:
         sti_1 = open('static/Angry.png', 'rb')
         bot.send_sticker(message.chat.id, sti_1)
-    elif message.text == 'Норм':
+    elif 'Норм' in text:
         sti_1 = open('static/Poker_face.png', 'rb')
         bot.send_sticker(message.chat.id, sti_1)
 
